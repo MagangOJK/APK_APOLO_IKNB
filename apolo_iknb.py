@@ -28,14 +28,14 @@ def load_tfidf(path):
 def load_svd(path):
     return joblib.load(path)
 
-model = load_model("E:\\DOWNLOAD\\Apolo IKNB\\APOLO_IKB_clf_fixs.joblib")
-tfidf = load_tfidf("E:\\DOWNLOAD\\Apolo IKNB\\tfidf_APOLO_IKNB.joblib")
-svd = load_svd("E:\\DOWNLOAD\\Apolo IKNB\\svd_APOLO_IKNB.joblib")
+model = load_model("APOLO_IKB_clf_fixs.joblib")
+tfidf = load_tfidf("tfidf_APOLO_IKNB.joblib")
+svd = load_svd("svd_APOLO_IKNB.joblib")
 
 @st.cache_data(show_spinner=False)
 def get_stemmed_mapping(text_list):
     # load cache statis sekali saja
-    with open("E:\\DOWNLOAD\\stem_cache.json", 'r') as f:
+    with open("stem_cache.json", 'r') as f:
         static_cache = json.load(f)
     
     stemmer = StemmerFactory().create_stemmer()
