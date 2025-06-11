@@ -323,9 +323,19 @@ if file:
             df_sel.loc[valid_mask, 'Label'] = model.predict(svd_f)
             progress_bar.progress(80)
 
+status_text.text("5/5: Mapping ke topik...")
+            label_to_topik = {
+                0: 'Permohonan Akses Modul & Aktivasi (ARO)',
+                1: 'Permohonan Reset Password',
+                2: 'Panduan Upload & Penamaan Laporan',
+                3: 'Validasi & File Excel',
+                4: 'Pemantauan dan Pelaporan Realisasi Rencana Bisnis '
+            }
+            df_sel['Prediksi_Topik'] = df_sel['Label'].map(label_to_topik)
+            progress_bar.progress(100)
 
         # 2) Tempelkan hasil kembali ke original
-        original = original.join(df_sel[['Label']])
+        original = original.join(df_sel[['Prediksi_Topik']])
 
         st.success("✅ Selesai")
         st.dataframe(original)
